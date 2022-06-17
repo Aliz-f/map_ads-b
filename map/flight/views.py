@@ -23,7 +23,6 @@ class getData(APIView):
 
     def post(self, request, *args, **kwargs):
         try:
-        
             global flight
             flight = request.data
             data = request.data
@@ -32,7 +31,10 @@ class getData(APIView):
                 if item.get('validposition')==1 and item.get('lat')!=0.0 and item.get('lon')!=0.0:
                     ser = dataFlightSerializer(data=item)
                     if ser.is_valid():
-                        ser.save()        
+                        ser.save()
+                        return Response(status=status.HTTP_201_CREATED)
+                    else:
+                        return Response(status=status.HTTP_406_NOT_ACCEPTABLE)        
             return Response(status=status.HTTP_204_NO_CONTENT)
         except Exception as e:
             # print(str(e))
