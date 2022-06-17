@@ -1,4 +1,5 @@
 
+from functools import partial
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -29,7 +30,7 @@ class getData(APIView):
             # print(data)
             for item in data:
                 if item.get('validposition')==1 and item.get('lat')!=0.0 and item.get('lon')!=0.0:
-                    ser = dataFlightSerializer(data=item)
+                    ser = dataFlightSerializer(data=item, partial = True)
                     if ser.is_valid():
                         ser.save()
                         return Response(status=status.HTTP_201_CREATED)

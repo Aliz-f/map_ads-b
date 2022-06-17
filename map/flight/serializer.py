@@ -20,6 +20,3 @@ class dataFlightSerializer(serializers.ModelSerializer):
     class Meta:
         model=dataFlight
         fields = '__all__'
-    
-    def create(self, validated_data):
-        return dataFlight.objects.create(**validated_data)
