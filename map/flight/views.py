@@ -61,7 +61,7 @@ class generateMap:
         locationsTemp = []
         data = dataFlight.objects.all()
         for item in data:
-            if item.validposition ==1 and item.lat > 0.0 and item.lon> 0.0:
+            if item.validposition ==1 and item.lat > 0.0 and item.lon> 0.0 and item.flight:
                 eachLocation={
                     'code':item.flight,
                     'lat':item.lat,
